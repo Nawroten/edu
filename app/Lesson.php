@@ -2,7 +2,7 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use app\Student;
-use app\Group;
+
 class Lesson extends Model
 {
     protected $guarded = [];
