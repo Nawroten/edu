@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use app\Group;
+use app\Lesson;
 
 class Student extends Model
 {
@@ -12,5 +13,10 @@ class Student extends Model
     public function Group()
     {
         return $this->belongTo(Group::class);
+    }
+    
+    public function Lesson()
+    {
+        return $this->hasOne(Lesson::class);
     }
 }
