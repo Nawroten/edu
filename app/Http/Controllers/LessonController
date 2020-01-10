@@ -1,1 +1,237 @@
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Lesson;
+use DB;
 
+class LessonController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $lessons = Lesson::all()->toArray();
+        return view('Lesson.index', compact('lessons'));
+    }
+    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('Lesson.create');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+                        'oc1_z1'        =>  'required',
+            'oc2_z1'        =>  'required',
+            'oc3_z1'        =>  'required',
+            'date_z1'      =>  'required',
+            'nr_cw_z1'      =>  'required',
+                        'oc1_z2'        =>  'required',
+            'oc2_z2'        =>  'required',
+            'oc3_z2'        =>  'required',
+            'date_z2'      =>  'required',
+            'nr_cw_z2'      =>  'required',
+                        'oc1_z3'        =>  'required',
+            'oc2_z3'        =>  'required',
+            'oc3_z3'        =>  'required',
+            'date_z3'      =>  'required',
+            'nr_cw_z3'      =>  'required',
+            
+                        'oc1_z4'        =>  'required',
+            'oc2_z4'        =>  'required',
+            'oc3_z4'        =>  'required',
+            'date_z4'      =>  'required',
+            'nr_cw_z4'      =>  'required',
+                        'oc1_z5'        =>  'required',
+            'oc2_z5'        =>  'required',
+            'oc3_z5'        =>  'required',
+            'date_z5'      =>  'required',
+            'nr_cw_z5'      =>  'required',
+                        'oc1_z6'        =>  'required',
+            'oc2_z6'        =>  'required',
+            'oc3_z6'        =>  'required',
+            'date_z6'      =>  'required',
+            'nr_cw_z6'      =>  'required',
+                        'oc1_z7'        =>  'required',
+            'oc2_z7'        =>  'required',
+            'oc3_z7'        =>  'required',
+            'date_z7'      =>  'required',
+            'nr_cw_z7'      =>  'required',
+                        'oc1_z8'        =>  'required',
+            'oc2_z8'        =>  'required',
+            'oc3_z8'        =>  'required',
+            'date_z8'      =>  'required',
+            'nr_cw_z8'      =>  'required',
+                        'oc1_z9'        =>  'required',
+            'oc2_z9'        =>  'required',
+            'oc3_z9'        =>  'required',
+            'date_z9'      =>  'required',
+            'nr_cw_z9'      =>  'required',
+                        'oc1_z10'        =>  'required',
+            'oc2_z10'        =>  'required',
+            'oc3_z10'        =>  'required',
+            'date_z10'      =>  'required',
+            'nr_cw_z10'      =>  'required',
+                        'oc1_z11'        =>  'required',
+            'oc2_z11'        =>  'required',
+            'oc3_z11'        =>  'required',
+            'date_z11'      =>  'required',
+            'nr_cw_z11'      =>  'required',   
+                        'oc1_z12'        =>  'required',
+            'oc2_z12'        =>  'required',
+            'oc3_z12'        =>  'required',
+            'date_z12'      =>  'required',
+            'nr_cw_z12'      =>  'required',
+                        'oc1_z13'        =>  'required',
+            'oc2_z13'        =>  'required',
+            'oc3_z13'        =>  'required',
+            'date_z13'      =>  'required',
+            'nr_cw_z13'      =>  'required',
+                        'oc1_z14'        =>  'required',
+            'oc2_z14'        =>  'required',
+            'oc3_z14'        =>  'required',
+            'date_z14'      =>  'required',
+            'nr_cw_z14'      =>  'required',
+                        'oc1_z15'        =>  'required',
+            'oc2_z15'        =>  'required',
+            'oc3_z15'        =>  'required',
+            'date_z15'      =>  'required',
+            'nr_cw_z15'      =>  'required',
+        ]);
+        $group = new Lesson([
+            'oc1_z1'        =>  $request->get('oc1_z1'),
+            'oc2_z1'        =>  $request->get('oc2_z1'),
+            'oc3_z1'        =>  $request->get('oc3_z1'),
+            'date_z1'       =>  $request->get('date_z1'),
+            'nr_cw_z1'      =>  $request->get('nr_cw_z1'),
+                        'oc1_z2'        =>  $request->get('oc1_z2'),
+            'oc2_z2'        =>  $request->get('oc2_z2'),
+            'oc3_z2'        =>  $request->get('oc3_z2'),
+            'date_z2'      =>  $request->get('date_z2'),
+            'nr_cw_z2'      =>  $request->get('nr_cw_z2'),
+                        'oc1_z3'        =>  $request->get('oc1_z3'),
+            'oc2_z3'        =>  $request->get('oc2_z3'),
+            'oc3_z3'        =>  $request->get('oc3_z3'),
+            'date_z3'      =>  $request->get('date_z3'),
+            'nr_cw_z3'      =>  $request->get('nr_cw_z3'),
+                        'oc1_z4'        =>  $request->get('oc1_z4'),
+            'oc2_z4'        =>  $request->get('oc2_z4'),
+            'oc3_z4'        =>  $request->get('oc3_z4'),
+            'date_z4'      =>  $request->get('date_z4'),
+            'nr_cw_z4'      =>  $request->get('nr_cw_z4'),
+                        'oc1_z5'        =>  $request->get('oc1_z5'),
+            'oc2_z5'        =>  $request->get('oc2_z5'),
+            'oc3_z5'        =>  $request->get('oc3_z5'),
+            'date_z5'      =>  $request->get('date_z5'),
+            'nr_cw_z5'      =>  $request->get('nr_cw_z5'),
+                        'oc1_z6'        =>  $request->get('oc1_z6'),
+            'oc2_z6'        =>  $request->get('oc2_z6'),
+            'oc3_z6'        =>  $request->get('oc3_z6'),
+            'date_z6'      =>  $request->get('date_z6'),
+            'nr_cw_z6'      =>  $request->get('nr_cw_z6'),
+                        'oc1_z7'        =>  $request->get('oc1_z7'),
+            'oc2_z7'        =>  $request->get('oc2_z7'),
+            'oc3_z7'        =>  $request->get('oc3_z7'),
+            'date_z7'      =>  $request->get('date_z7'),
+            'nr_cw_z7'      =>  $request->get('nr_cw_z7'),
+                        'oc1_z8'        =>  $request->get('oc1_z8'),
+            'oc2_z8'        =>  $request->get('oc2_z8'),
+            'oc3_z8'        =>  $request->get('oc3_z8'),
+            'date_z8'      =>  $request->get('date_z8'),
+            'nr_cw_z8'      =>  $request->get('nr_cw_z8'),
+                        'oc1_z9'        =>  $request->get('oc1_z9'),
+            'oc2_z9'        =>  $request->get('oc2_z9'),
+            'oc3_z9'        =>  $request->get('oc3_z9'),
+            'date_z9'      =>  $request->get('date_z9'),
+            'nr_cw_z9'      =>  $request->get('nr_cw_z9'),
+                        'oc1_z10'        =>  $request->get('oc1_z10'),
+            'oc2_z10'        =>  $request->get('oc2_z10'),
+            'oc3_z10'        =>  $request->get('oc3_z10'),
+            'date_z10'      =>  $request->get('date_z10'),
+            'nr_cw_z10'      =>  $request->get('nr_cw_z10'),
+                        'oc1_z11'        =>  $request->get('oc1_z11'),
+            'oc2_z11'        =>  $request->get('oc2_z11'),
+            'oc3_z11'        =>  $request->get('oc3_z11'),
+            'date_z11'      =>  $request->get('date_z11'),
+            'nr_cw_z11'      =>  $request->get('nr_cw_z11'),
+                        'oc1_z12'        =>  $request->get('oc1_z12'),
+            'oc2_z12'        =>  $request->get('oc2_z12'),
+            'oc3_z12'        =>  $request->get('oc3_z12'),
+            'date_z12'      =>  $request->get('date_z12'),
+            'nr_cw_z12'      =>  $request->get('nr_cw_z12'),
+                        'oc1_z13'        =>  $request->get('oc1_z13'),
+            'oc2_z13'        =>  $request->get('oc2_z13'),
+            'oc3_z13'        =>  $request->get('oc3_z13'),
+            'date_z13'      =>  $request->get('date_z13'),
+            'nr_cw_z13'      =>  $request->get('nr_cw_z13'),
+                        'oc1_z14'        =>  $request->get('oc1_z14'),
+            'oc2_z14'        =>  $request->get('oc2_z14'),
+            'oc3_z14'        =>  $request->get('oc3_z14'),
+            'date_z14'      =>  $request->get('date_z14'),
+            'nr_cw_z14'      =>  $request->get('nr_cw_z14'),
+                        'oc1_z15'        =>  $request->get('oc1_z15'),
+            'oc2_z15'        =>  $request->get('oc2_z15'),
+            'oc3_z15'        =>  $request->get('oc3_z15'),
+            'date_z15'      =>  $request->get('date_z15'),
+            'nr_cw_z15'      =>  $request->get('nr_cw_z15'),
+        ]);
+        $group->save();
+        return redirect()->route('Lesson.create')->with('success','Data Added');
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Group $Group)
+    {
+        return view('Lesson.show', compact('Lesson'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        //
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy()
+    {
+        //
+    }
+    
+}
